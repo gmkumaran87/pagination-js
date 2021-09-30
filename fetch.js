@@ -7,12 +7,17 @@ class FetchUsers {
         return fetch(url);
     }
     async fetchUsers(url) {
-        const data = await this.fetchApi(url);
-        const users = await data.json();
-
-        this.pagination(users);
-
-        return this.pages;
+        try {
+            const data = await this.fetchApi(url);
+            if (!data.ok) {
+                throw new Error("Something went wrong!");
+            }
+            const users = await data.json();
+            this.pagination(users);
+            return this.pages;
+        } catch (error) {
+            console.log(`error`, error);
+        }
     }
 
     // Paginate the fetched data into 10 records per page

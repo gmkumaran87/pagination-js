@@ -12,8 +12,6 @@ const users = new FetchUsers();
 const ui = new UI();
 
 // Load the stateObj with JSON data
-users.fetchUsers(URL);
-
 const init = async() => {
     const pages = await users.fetchUsers(URL);
     console.log(pages);
